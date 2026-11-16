@@ -336,6 +336,84 @@
       text-transform: uppercase; letter-spacing: .04em;
     }
 
+    /* ── Servicios: galería fotográfica (home) ── */
+    .servicios-photo-grid {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .srv-photo-card {
+      position: relative; display: block; overflow: hidden;
+      border-radius: 16px; isolation: isolate; cursor: pointer;
+      flex: 0 0 calc((100% - 3rem) / 3);
+      height: 410px;
+    }
+
+    .srv-photo-card-media {
+      position: absolute; inset: 0; display: block;
+    }
+    .srv-photo-card-media img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      transition: transform .4s ease;
+    }
+
+    /* Degradado oscuro: más intenso abajo, transparente arriba */
+    .srv-photo-card::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to top,
+        rgba(17,63,101,.92) 0%,
+        rgba(17,63,101,.6)  36%,
+        rgba(17,63,101,.1)  66%,
+        rgba(17,63,101,0)   85%
+      );
+    }
+
+    /* Capa naranja corporativa al hover/focus */
+    .srv-photo-card::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: rgba(239,119,30,0);
+      transition: background .4s ease;
+    }
+
+    .srv-photo-card-content {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      align-items: flex-start; text-align: left;
+      padding: 1.6rem 1.5rem; gap: .5rem;
+    }
+
+    .srv-photo-card-content h3 {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+      line-height: 1.2; color: var(--white);
+    }
+    .srv-photo-card-content p {
+      font-size: .88rem; line-height: 1.5; color: rgba(255,255,255,.9);
+      max-width: 320px; margin-bottom: .3rem;
+    }
+
+    .srv-photo-card-cta { transition: background .4s ease; }
+
+    .srv-photo-card:focus-visible {
+      outline: 3px solid var(--orange); outline-offset: 3px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .srv-photo-card:hover .srv-photo-card-media img,
+      .srv-photo-card:focus-visible .srv-photo-card-media img {
+        transform: scale(1.04);
+      }
+      .srv-photo-card:hover::after,
+      .srv-photo-card:focus-visible::after {
+        background: rgba(239,119,30,.4);
+      }
+      .srv-photo-card:hover .srv-photo-card-cta,
+      .srv-photo-card:focus-visible .srv-photo-card-cta {
+        background: #d4660f;
+      }
+    }
+
     /* Banner CTA pequeño */
     .banner-cta {
       background: var(--cream); margin-top: 2rem; border-radius: 12px;
@@ -347,42 +425,6 @@
     .banner-cta p strong { color: var(--navy); }
 
     /* ══════════════════════════════════════════════
-       CONSORCIOS / ADMINISTRACIONES
-       ══════════════════════════════════════════════ */
-    #consorcios { background: var(--cream); padding: 4.5rem 0; }
-
-    .consorcios-inner {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3.5rem; align-items: center;
-    }
-
-    .consorcios-text h2 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-      font-weight: 700; color: var(--navy);
-      text-transform: uppercase; letter-spacing: .06em;
-      line-height: 1.2; margin-bottom: 1.1rem;
-    }
-    .consorcios-text .c-lead {
-      font-size: .97rem; font-weight: 600;
-      color: var(--orange); margin-bottom: .75rem;
-    }
-    .consorcios-text p {
-      font-size: .92rem; color: var(--ink2);
-      line-height: 1.75; margin-bottom: .6rem;
-    }
-    .consorcios-text .c-bold {
-      font-weight: 700; color: var(--navy);
-      font-size: .93rem; margin: .8rem 0 1.4rem;
-    }
-
-    .consorcios-img img {
-      width: 100%; border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.12);
-    }
-
-    /* ══════════════════════════════════════════════
        POR QUÉ ELEGIRNOS
        ══════════════════════════════════════════════ */
     #porque { background: var(--white); padding: 4rem 0; }
@@ -391,27 +433,60 @@
 
     .porque-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: .75rem; margin-top: 2.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-top: 2.5rem;
     }
     .porque-item {
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center; gap: .6rem;
-      padding: 1.2rem .6rem;
+      display: flex; flex-direction: row;
+      align-items: flex-start; text-align: left; gap: 1rem;
+      padding: 1.6rem 1.5rem;
+      background: var(--cream);
+      border: 1px solid transparent;
+      border-radius: 16px;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     }
     .porque-item-icon {
-      width: 48px; height: 48px;
+      width: 52px; height: 52px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(239,119,30,.12);
+      transition: background .3s ease;
     }
     .porque-item-icon svg {
-      width: 36px; height: 36px;
-      stroke: var(--navy); fill: none;
-      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      width: 26px; height: 26px;
+      stroke: var(--orange); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
     }
     .porque-item p {
-      font-size: .78rem; color: var(--ink2);
-      line-height: 1.4;
+      font-size: .92rem; font-weight: 500; color: var(--ink2);
+      line-height: 1.55; margin-top: .3rem;
     }
+
+    @media (hover: hover) and (pointer: fine) {
+      .porque-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(17,63,101,.12);
+        border-color: rgba(239,119,30,.35);
+      }
+      .porque-item:hover .porque-item-icon { background: rgba(239,119,30,.2); }
+    }
+
+    /* CTA al pie de "Por qué elegirnos" */
+    .porque-cta {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; margin-top: 2.5rem;
+      background: var(--navy); color: var(--white);
+      border-radius: 16px; padding: 1.8rem 2rem;
+    }
+    .porque-cta-text h3 {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      margin-bottom: .3rem;
+    }
+    .porque-cta-text p {
+      font-size: .9rem; color: rgba(255,255,255,.82);
+    }
+    .porque-cta .btn-orange { flex-shrink: 0; }
 
     /* ══════════════════════════════════════════════
        QUIÉNES SOMOS
@@ -591,7 +666,10 @@
        ══════════════════════════════════════════════ */
     @media (max-width: 1024px) {
       .servicios-grid { grid-template-columns: repeat(3, 1fr); }
-      .porque-grid { grid-template-columns: repeat(4, 1fr); }
+      .porque-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Servicios (home): tablet, 2 columnas */
+      .srv-photo-card { flex: 0 0 calc((100% - 1.5rem) / 2); height: 390px; }
     }
 
     @media (max-width: 860px) {
@@ -623,7 +701,6 @@
       .hero-img-wrap { min-height: 280px; }
 
 
-      .consorcios-inner,
       .quienes-inner,
       .service-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
       .quienes-img { order: -1; }
@@ -631,16 +708,23 @@
 
       .servicios-grid,
       .servicios-grid.servicios-grid--compact { grid-template-columns: repeat(2, 1fr); }
-      .porque-grid { grid-template-columns: repeat(3, 1fr); }
+      .porque-grid { grid-template-columns: repeat(2, 1fr); }
       .service-tareas-list { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
       .servicios-grid,
       .servicios-grid.servicios-grid--compact { grid-template-columns: repeat(2, 1fr); }
-      .porque-grid { grid-template-columns: repeat(2, 1fr); }
+      .porque-grid { grid-template-columns: repeat(1, 1fr); }
       .cta-final-inner h2 { font-size: 1.6rem; }
       .btn-orange, .btn-outline { width: 100%; justify-content: center; }
+
+      /* Servicios (home): mobile, 1 columna */
+      .srv-photo-card { flex: 0 0 100%; height: 320px; }
+      .srv-photo-card .srv-photo-card-cta.btn-orange { width: auto; }
+
+      /* "Por qué elegirnos": CTA apilado en mobile */
+      .porque-cta { flex-direction: column; align-items: stretch; text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {

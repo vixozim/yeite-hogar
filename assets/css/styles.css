@@ -424,6 +424,29 @@
     .banner-cta p { font-size: .94rem; color: var(--ink); }
     .banner-cta p strong { color: var(--navy); }
 
+    /* Animación de ingreso al hacer scroll */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+    .fade-left {
+      opacity: 0; transform: translateX(-32px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-left.is-visible { opacity: 1; transform: translateX(0); }
+    .fade-left:nth-child(1) { transition-delay: 0s; }
+    .fade-left:nth-child(2) { transition-delay: .1s; }
+    .fade-left:nth-child(3) { transition-delay: .2s; }
+    .fade-left:nth-child(4) { transition-delay: .3s; }
+    .fade-left:nth-child(5) { transition-delay: .4s; }
+    .fade-left:nth-child(6) { transition-delay: .5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .fade-left { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ══════════════════════════════════════════════
        POR QUÉ ELEGIRNOS
        ══════════════════════════════════════════════ */

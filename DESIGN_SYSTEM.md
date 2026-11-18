@@ -4,7 +4,7 @@
 
 ## 1. Stack técnico
 
-- **HTML**: multipágina estática, sin build step. `index.html` en la raíz (secciones ancladas por `id`: `#hero`, `#servicios`, `#consorcios`, `#porque`, `#quienes`, `#cta-final`) + 5 páginas de servicio en `servicios/*.html` (`reparaciones-hogar`, `carpinteria-muebles`, `albanileria`, `electricidad`, `herreria`). Cada página de servicio repite nav/preloader/footer completos (no hay includes ni templating — se duplica a mano).
+- **HTML**: multipágina estática, sin build step. `index.html` en la raíz (secciones ancladas por `id`: `#hero`, `#servicios`, `#consorcios`, `#porque`, `#quienes`, `#cta-final`) + 5 páginas de servicio en `servicios/*.html` (`reparaciones-hogar`, `carpinteria-muebles`, `construccion-mejoras`, `electricidad`, `herreria`). Cada página de servicio repite nav/preloader/footer completos (no hay includes ni templating — se duplica a mano).
 - **CSS**: 1 archivo compartido (`assets/css/styles.css`), sin preprocesador, sin metodología de nombres (BEM parcial, ad-hoc por sección). `assets/css/styles1.css` existe en el repo pero no está referenciado por ningún HTML (legacy, no tocar salvo que se confirme que se puede borrar).
 - **JS**: inline y duplicado en cada HTML (index + 5 páginas de servicio). Maneja: preloader animado, toggle del menú mobile (`.nav-toggle` / `.nav-links.open`), dropdown "Servicios" (`.nav-dropdown` / clase `open`, toggle por click + hover en desktop vía CSS), y el fondo del nav al hacer scroll. Al editar este script hay que replicar el cambio en los 6 archivos.
 - **Fuentes**: Google Fonts — `Fraunces` (serif, display/títulos) + `Inter` (sans, cuerpo).
@@ -117,7 +117,7 @@ No hay: scroll reveal, parallax, stagger de listas, microinteracciones en cards 
 8. `footer`
 9. `.wa-float` (fixed, fuera de flujo)
 
-**`servicios/*.html`** (5 páginas: reparaciones-hogar, carpinteria-muebles, albanileria, electricidad, herreria):
+**`servicios/*.html`** (5 páginas: reparaciones-hogar, carpinteria-muebles, construccion-mejoras, electricidad, herreria):
 1. `nav` (fixed, idéntico a index con rutas `../`)
 2. `.service-hero` — breadcrumb + h1 + lead + sub + CTA + imagen genérica
 3. `#service-tareas` — grid de tareas incluidas en ese servicio
